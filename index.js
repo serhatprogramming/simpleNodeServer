@@ -1,6 +1,10 @@
 const express = require("express");
+const cors = require("cors");
 const app = express();
 
+require("dotenv").config();
+
+app.use(cors());
 app.use(express.json());
 
 let notes = [
@@ -68,7 +72,22 @@ app.delete("/api/notes/:id", (req, res) => {
   res.status(204).end();
 });
 
-const PORT = 3001;
+app.put("/api/notes/:id", (req, res) => {
+  const id = Number(req.params.id);
+
+  let newNote = req.body;
+
+  const oldNote = notes.find((note) => note.id === id);
+
+  if (oldNote) {
+    notes = notes.map((note) => (note.id !== id ? note : newNote));
+    res.status(200).json(newNote).end();
+  } else {
+    res.status(400).end();
+  }
+});
+
+const PORT = process.env.PORT || 3001;
 
 app.listen(PORT);
 console.log(`Server is running on port ${PORT}`);
