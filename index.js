@@ -88,6 +88,6 @@ app.put("/api/notes/:id", (req, res) => {
 });
 
 const PORT = process.env.PORT || 3001;
-
+console.log(PORT);
 app.listen(PORT);
 console.log(`Server is running on port ${PORT}`);
