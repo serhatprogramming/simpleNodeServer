@@ -3,6 +3,9 @@ sequenceDiagram
     participant browser
     participant server
 
+    browser->>server: POST https://studies.cs.helsinki.fi/exampleapp/new_note
+    browser->>server: [{"note":"Testing"}]
+
     browser->>server: GET https://studies.cs.helsinki.fi/exampleapp/notes
     activate server
     server-->>browser: HTML document
@@ -22,7 +25,7 @@ sequenceDiagram
 
     browser->>server: GET https://studies.cs.helsinki.fi/exampleapp/data.json
     activate server
-    server-->>browser: [{ "content": "HTML is easy", "date": "2023-1-1" }, ... ]
+    server-->>browser: [{ "content": "ddadaw", "date": ""2023-03-20T15:26:18.637Z"" }, ... ]
     deactivate server
 
     Note right of browser: The browser executes the callback function that renders the notes
