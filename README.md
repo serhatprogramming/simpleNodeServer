@@ -59,3 +59,18 @@ sequenceDiagram
 
     Note right of browser: The browser executes the callback function that renders the notes
  ```
+ 
+ ```mermaid
+ sequenceDiagram
+    participant browser
+    participant server
+
+browser-->server: POST https://studies.cs.helsinki.fi/exampleapp/new_note_spa
+browser-->server: {"content": "test","date": "2023-03-20T20:13:42.131Z"}
+activate server
+server-->browser: {"message":"note created"}
+deactivate server
+
+
+Note right of browser: The browser rerender the page reflecting the newly added note
+ ```
